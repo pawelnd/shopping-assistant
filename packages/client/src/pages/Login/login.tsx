@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 
-function Index() {
+export default function Login() {
   return (
     <div className="App">
       <header className="App-header">
@@ -11,4 +11,3 @@ function Index() {
   );
 }
 
-export default Index;
