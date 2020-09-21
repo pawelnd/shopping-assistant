@@ -1,5 +1,8 @@
 module.exports = {
   extends: ["../../.eslintrc.js", "airbnb/hooks", "prettier/react"],
+  parserOptions: {
+    project: "./tsconfig.json"
+  },
   overrides: [
     {
       files: ["src/*.test.{ts,tsx}"],
@@ -14,6 +17,9 @@ module.exports = {
     }
   ],
   rules: {
+    "@typescript-eslint/no-use-before-define": "off",
+    "@typescript-eslint/no-redeclare": "off",
+    "@typescript-eslint/no-shadow": "off",
     "import/no-extraneous-dependencies": [
       "error",
       {
@@ -25,7 +31,6 @@ module.exports = {
         ]
       }
     ],
-    "jsx-a11y/label-has-associated-control": "off",
     "no-param-reassign": [
       "error",
       { props: true, ignorePropertyModificationsFor: ["draft"] }
