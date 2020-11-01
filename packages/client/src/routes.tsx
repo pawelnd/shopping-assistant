@@ -1,12 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router';
-import MainLayout from './components/MainLayout';
+import Login from './pages/Login';
 
-export default function () {
-  return (
-    <>
-      works2
-      <Route component={MainLayout} path="/" />
-    </>
-  );
-}
+const routes = [
+  {
+    path: '/',
+    element: () => <Login />
+  }
+];
+
+export default routes;

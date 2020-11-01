@@ -19,6 +19,7 @@ module.exports = {
   rules: {
     "@typescript-eslint/no-use-before-define": "off",
     "@typescript-eslint/no-redeclare": "off",
+    "@typescript-eslint/no-loop-func": "off",
     "@typescript-eslint/no-shadow": "off",
     "import/no-extraneous-dependencies": [
       "error",
@@ -30,12 +31,6 @@ module.exports = {
           "src/testUtils/**/*.ts"
         ]
       }
-    ],
-    "no-param-reassign": [
-      "error",
-      { props: true, ignorePropertyModificationsFor: ["draft"] }
-    ],
-    "react/button-has-type": "off",
-    "react/prop-types": "off"
+    ]
   }
 };
