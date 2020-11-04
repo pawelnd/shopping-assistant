@@ -1,11 +1,20 @@
 import React from 'react';
 import './Login.module.scss';
-import {Button, Checkbox, Container, FormControlLabel, Grid, Link, TextField} from "@material-ui/core";
+import {
+  Button,
+  Checkbox,
+  Container,
+  FormControlLabel,
+  Grid,
+  Link,
+  TextField
+} from '@material-ui/core';
 
 export default function Login() {
-  return <Container maxWidth="xs">
-    <form noValidate>
-      <TextField
+  return (
+    <Container maxWidth="xs">
+      <form noValidate>
+        <TextField
           variant="outlined"
           margin="normal"
           required
@@ -15,8 +24,8 @@ export default function Login() {
           name="email"
           autoComplete="email"
           autoFocus
-      />
-      <TextField
+        />
+        <TextField
           variant="outlined"
           margin="normal"
           required
@@ -26,31 +35,27 @@ export default function Login() {
           type="password"
           id="password"
           autoComplete="current-password"
-      />
-      <FormControlLabel
+        />
+        <FormControlLabel
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
-      />
-      <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-      >
-        Sign In
-      </Button>
-      <Grid container>
-        <Grid item xs>
-          <Link href="#" variant="body2">
-            Forgot password?
-          </Link>
+        />
+        <Button type="submit" fullWidth variant="contained" color="primary">
+          Sign In
+        </Button>
+        <Grid container>
+          <Grid item xs>
+            <Link href="#" variant="body2">
+              Forgot password?
+            </Link>
+          </Grid>
+          <Grid item>
+            <Link href="#" variant="body2">
+              Don't have an account? Sign Up
+            </Link>
+          </Grid>
         </Grid>
-        <Grid item>
-          <Link href="#" variant="body2">
-            {"Don't have an account? Sign Up"}
-          </Link>
-        </Grid>
-      </Grid>
-    </form>
-  </Container>;
+      </form>
+    </Container>
+  );
 }
