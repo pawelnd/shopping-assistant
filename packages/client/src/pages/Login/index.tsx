@@ -1,5 +1,4 @@
 import React from 'react';
-import './Login.module.scss';
 import {
   Button,
   Checkbox,
