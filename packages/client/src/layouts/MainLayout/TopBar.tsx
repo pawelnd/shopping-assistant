@@ -1,12 +1,14 @@
 import React from 'react';
 import { AppBar, Button, Toolbar } from '@material-ui/core';
+import { AppBarWrapper } from './styles';
 
 export default function TopBar() {
   return (
     <AppBar position="static">
-      <Toolbar>
+      <AppBarWrapper>
+        <b>Shopping List </b>
         <Button color="inherit">Login</Button>
-      </Toolbar>
+      </AppBarWrapper>
     </AppBar>
   );
 }

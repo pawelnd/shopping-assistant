@@ -1,7 +1,5 @@
 import { createMuiTheme } from '@material-ui/core/styles';
-import cyan from "@material-ui/core/colors/cyan";
-import green from "@material-ui/core/colors/green";
-
+import { cyan, green } from '@material-ui/core/colors';
 
 const theme = createMuiTheme({
   palette: {
@@ -14,4 +12,4 @@ const theme = createMuiTheme({
   }
 });
 
-export default theme
+export default theme;
