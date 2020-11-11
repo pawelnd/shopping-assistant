@@ -12,10 +12,10 @@ import messagesEn from './i18n/messages_en';
 
 ReactDOM.render(
   <React.StrictMode>
+    <GlobalStyles />
     <ThemeProvider theme={theme}>
       <IntlProvider messages={messagesEn} locale={Language.en} defaultLocale={Language.en}>
         <App />
-        <GlobalStyles />
       </IntlProvider>
     </ThemeProvider>
   </React.StrictMode>,

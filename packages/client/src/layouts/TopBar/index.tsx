@@ -3,7 +3,7 @@ import { AppBar, Button, Toolbar } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 
 import { FormattedMessage } from 'react-intl';
-import { AppBarLogo, AppBarContainer, AppBarRightButtons } from './styles';
+import { AppBarStart, AppBarContainer, AppBarCenter, AppBarEnd } from './styles';
 
 export default function TopBar() {
   const history = useHistory();
@@ -11,12 +11,13 @@ export default function TopBar() {
   return (
     <AppBar position="static">
       <AppBarContainer>
-        <AppBarLogo>Shopping List</AppBarLogo>
-        <AppBarRightButtons>
+        <AppBarStart>Shopping List</AppBarStart>
+        <AppBarCenter />
+        <AppBarEnd>
           <Button color="inherit" onClick={() => history.push('/login')}>
             <FormattedMessage id="login" />
           </Button>
-        </AppBarRightButtons>
+        </AppBarEnd>
       </AppBarContainer>
     </AppBar>
   );

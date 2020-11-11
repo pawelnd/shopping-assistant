@@ -7,12 +7,14 @@ export const AppBarContainer = styled(Toolbar)`
   justify-content: space-between;
 `;
 
-export const AppBarLogo = styled.div`
-  display: flex;
-  justify-content: space-between;
+export const AppBarStart = styled.div`
+  flex: 2;
 `;
 
-export const AppBarRightButtons = styled.div`
-  margin-right: 0;
+export const AppBarCenter = styled.div`
+  flex: 3;
 `;
 
+export const AppBarEnd = styled.div`
+
+`;
