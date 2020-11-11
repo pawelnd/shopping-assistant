@@ -8,6 +8,7 @@ export const AppBarContainer = styled(Toolbar)`
 `;
 
 export const AppBarStart = styled.div`
+  cursor: pointer;
   flex: 2;
 `;
 
