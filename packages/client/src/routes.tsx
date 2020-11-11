@@ -1,11 +1,9 @@
 import React from 'react';
-import Login from './pages/Login';
 
-const routes = [
-  {
-    path: '/',
-    element: () => <Login />
-  }
-];
+const routes = {
+  DASHBOARD: '/',
+  LOGIN: '/login',
+  TEST: '/test',
+};
 
 export default routes;

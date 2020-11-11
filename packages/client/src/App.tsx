@@ -1,16 +1,20 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import routes from './routes';
 import MainLayout from './layouts/MainLayout';
+import Dashboard from './pages/Dashboard';
+import Login from './pages/Login';
+import Test from './pages/Test';
 
 const App = () => {
-  const routing = routes.map((route) => (
-    <Route path={route.path} component={route.element} />
-  ));
-
   return (
     <Router>
-      <MainLayout>{routing}</MainLayout>
+      <MainLayout>
+        <Route exact path={routes.DASHBOARD} component={Dashboard} />
+        <Route exact path={routes.LOGIN} component={Login} />
+        <Route exact path={routes.TEST} component={Test} />
+        {/* <Redirect to="/login" /> */}
+      </MainLayout>
     </Router>
   );
 };
