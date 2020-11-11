@@ -1,9 +1,8 @@
 import React from 'react';
-import { Box, Button, Card, CardContent, Container, FormControlLabel, Grid, Link, TextField, Typography } from '@material-ui/core';
-import Checkbox from '@material-ui/core/Checkbox';
+import { Box, Card, CardContent, Container, Typography } from '@material-ui/core';
 import { LockRounded } from '@material-ui/icons/';
+import { FormattedMessage } from 'react-intl';
 import LoginForm from './LoginForm';
-import {FormattedMessage} from "react-intl";
 
 export default function Login() {
   return (
@@ -14,7 +13,7 @@ export default function Login() {
             <Box display="flex" alignItems="center" flexDirection="column">
               <LockRounded />
               <Typography component="h1" variant="h5">
-                <FormattedMessage id="login"></FormattedMessage>
+                <FormattedMessage id="login" />
               </Typography>
               <LoginForm />
             </Box>
