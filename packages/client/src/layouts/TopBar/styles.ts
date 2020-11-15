@@ -17,5 +17,5 @@ export const AppBarCenter = styled.div`
 `;
 
 export const AppBarEnd = styled.div`
-
+  
 `;
