@@ -1,9 +1,13 @@
 import express from 'express';
+import path from 'path';
 
 const app = express();
 
-app.get('/', function(req, res) {
+app.get('/api', function(req, res) {
   res.send('Hello World');
 });
 
-app.listen(5000);
+app.use(express.static(`${__dirname}/../../client/build/`));
+
+app.listen(process.env.PORT || 8080);
+console.log(`app started on port ${process.env.PORT || 8080}`);

@@ -2,6 +2,7 @@
   "name": "@shopping/client",
   "version": "0.1.0",
   "private": true,
+  "proxy": "http://localhost:8080",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -15,7 +16,6 @@
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.6",
     "axios": "latest",
-    "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-intl": "^5.10.0",
@@ -56,7 +56,7 @@
     "@storybook/react": "^6.0.28",
     "@types/react-router-dom": "^5.1.6",
     "@types/styled-components": "^5.1.4",
-    "babel-loader": "^8.2.1",
+    "babel-loader": "8.1.0",
     "react-is": "^17.0.1"
   }
 }
