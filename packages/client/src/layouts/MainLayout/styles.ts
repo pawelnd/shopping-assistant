@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 import { blueGrey } from '@material-ui/core/colors';
-import { Toolbar } from '@material-ui/core';
 
 export const MainLayoutWrapper = styled.div`
+  height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   background-color: ${blueGrey[50]};
-  height: 100vh;
+`;
+
+export const ContentWrapper = styled.div`
+  flex-grow: 1;
 `;
