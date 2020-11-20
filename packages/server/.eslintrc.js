@@ -3,11 +3,14 @@ module.exports = {
   parserOptions: {
     project: "./tsconfig.json"
   },
-  // overrides: [
-  //   {
-  //     files: ["*.test.ts"],
-  //     env: { jest: true },
-  //     extends: ["plugin:jest/recommended"]
-  //   }
-  // ]
+  overrides: [
+    {
+      rules: {
+        'import/prefer-default-export' : 0
+      },
+      files: ["*.test.controller.ts"],
+      env: { jest: true },
+      extends: ["plugin:jest/recommended"]
+    }
+  ]
 };
