@@ -12,5 +12,8 @@
     "outDir": "build",
     "baseUrl": ".",
     "rootDir": "."
-  }
+  },
+  "include": [
+    "src/**/*"
+  ]
 }
