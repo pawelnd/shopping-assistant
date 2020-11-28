@@ -40,6 +40,7 @@
     "class-validator": "^0.12.2",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
+    "envalid": "^6.0.2",
     "express": "latest",
     "mongoose": "^5.10.15",
     "node-cron": "^2.0.3",

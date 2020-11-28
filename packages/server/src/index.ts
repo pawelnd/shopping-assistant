@@ -6,6 +6,7 @@ import { PORT } from './config';
 import 'source-map-support/register';
 import 'reflect-metadata';
 import mainRouter from './routes';
+import { validateEnv } from './utils/validateEnv';
 
 require('dotenv').config();
 
@@ -30,6 +31,7 @@ const initDb = () => {
 };
 
 const bootstrap = async () => {
+  validateEnv();
   initApp();
   initDb();
 };
