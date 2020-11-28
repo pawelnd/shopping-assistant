@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import routes from './routes';
 import MainLayout from './layouts/MainLayout';

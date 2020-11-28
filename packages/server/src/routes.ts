@@ -3,6 +3,6 @@ import postsRouter from './posts/posts.router';
 
 const mainRouter = express.Router();
 
-mainRouter.use('/posts', postsRouter);
+mainRouter.use('/post', postsRouter);
 
 export default mainRouter;

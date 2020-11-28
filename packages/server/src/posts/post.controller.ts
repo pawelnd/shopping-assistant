@@ -13,6 +13,15 @@ export class PostController {
     response.send(posts);
   };
 
+  public removeAllPosts = async (
+    request: Request,
+    response: Response,
+    next,
+  ) => {
+    await this.postRepository.removeAll();
+    next();
+  };
+
   public createPost = async (request: Request, response: Response) => {
     const postData: CreatePostDto = request.body;
     const createdPost = await this.postRepository.create({

@@ -11,6 +11,7 @@ import 'source-map-support/register';
 import 'reflect-metadata';
 import mainRouter from './routes';
 import { validateEnv } from './utils/validateEnv';
+import errorMiddleware from './middleware/error.middleware';
 
 const initApp = () => {
   const app = express();
@@ -18,12 +19,13 @@ const initApp = () => {
   app.use(morgan('combined'));
   app.use(compression());
   app.use(helmet());
+  app.use(helmet());
   app.use(express.json());
 
   app.use('/api', mainRouter);
 
   app.use(express.static(`${__dirname}/../../client/build/`));
-
+  app.use(errorMiddleware);
   app.listen({ port: PORT });
   return app;
 };
@@ -57,7 +59,7 @@ const bootstrap = async () => {
 
 bootstrap()
   .then(() => {
-    console.log(`🚀 API ready at http://localhost:${PORT} ${Math.random()}`);
+    console.log(`🚀 API ready at http://localhost:${PORT}`);
   })
   .catch(error => {
     console.error(error);

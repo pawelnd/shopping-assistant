@@ -25,6 +25,11 @@ abstract class BaseRepository<T> {
     return result;
   }
 
+  async removeAll(): Promise<number> {
+    const result = await this.Model.remove({});
+    return result.deletedCount;
+  }
+
   find(item: T): Promise<T[]> {
     throw new Error('Method not implemented.');
   }
