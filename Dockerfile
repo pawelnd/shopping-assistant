@@ -15,5 +15,5 @@ RUN apk --no-cache add ca-certificates
 COPY --from=builder /app ./
 RUN chmod +x ./docker_entry.sh
 EXPOSE 8080
-CMD ["node", "packages/server/build/index.js"]
+CMD ["node", "packages/server/build/src/index.js"]
 
