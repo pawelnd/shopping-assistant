@@ -23,17 +23,26 @@ const initApp = () => {
   return app;
 };
 
-const initDb = () => {
+const initDb = async () => {
   const { MONGO_CONNECTION_STRING } = process.env;
-  mongoose.connect(MONGO_CONNECTION_STRING, {
-    useNewUrlParser: true,
-  });
+  try {
+    await mongoose.connect(MONGO_CONNECTION_STRING, {
+      useNewUrlParser: true,
+    });
+    console.log('DB connected successfully');
+  } catch (e) {
+    console.log(
+      `DB connection problem at connection string: ${MONGO_CONNECTION_STRING ??
+        'empty'}`,
+    );
+  }
 };
 
 const bootstrap = async () => {
+  console.log('Initializing app');
   validateEnv();
-  initApp();
-  initDb();
+  await initDb();
+  await initApp();
 };
 
 bootstrap()

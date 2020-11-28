@@ -1,6 +1,6 @@
 import { cleanEnv, str } from 'envalid';
 
-export function validateEnv() {
+export async function validateEnv() {
   cleanEnv(process.env, {
     MONGO_CONNECTION_STRING: str(),
   });
