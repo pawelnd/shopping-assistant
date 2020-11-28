@@ -48,6 +48,9 @@
     "serverless-http": "^2.6.0",
     "source-map-support": "^0.5.19",
     "tsyringe": "^4.4.0",
-    "typedi": "latest"
+    "typedi": "latest",
+    "helmet": "latest",
+    "compression": "latest",
+    "morgan": "latest"
   }
 }

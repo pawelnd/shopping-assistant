@@ -1,22 +1,27 @@
 import express from 'express';
-import cron from 'node-cron';
 import cookieParser from 'cookie-parser';
 import mongoose from 'mongoose';
+import helmet from 'helmet';
+import compression from 'compression';
+import morgan from 'morgan';
+import { config } from 'dotenv';
+import path from 'path';
 import { PORT } from './config';
 import 'source-map-support/register';
 import 'reflect-metadata';
 import mainRouter from './routes';
 import { validateEnv } from './utils/validateEnv';
 
-require('dotenv').config();
-
 const initApp = () => {
   const app = express();
   app.use(cookieParser());
-  app.get('/helathcheck', (req, res) => {
-    res.send("Hey you i'm here...");
-  });
+  app.use(morgan('combined'));
+  app.use(compression());
+  app.use(helmet());
+  app.use(express.json());
+
   app.use('/api', mainRouter);
+
   app.use(express.static(`${__dirname}/../../client/build/`));
 
   app.listen({ port: PORT });
@@ -38,7 +43,12 @@ const initDb = async () => {
   }
 };
 
+function applyEnvVariables() {
+  config({ path: path.resolve(__dirname, './../../../.env') });
+}
+
 const bootstrap = async () => {
+  applyEnvVariables();
   console.log('Initializing app');
   validateEnv();
   await initDb();
@@ -53,8 +63,3 @@ bootstrap()
     console.error(error);
     process.exit(1);
   });
-
-let instanceUpTimeMinutes = 0;
-cron.schedule('* * * * *', function() {
-  instanceUpTimeMinutes += 1;
-});
