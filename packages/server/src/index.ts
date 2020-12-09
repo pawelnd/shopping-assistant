@@ -6,8 +6,6 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
-
-import path from 'path';
 import bodyParser from 'body-parser';
 
 import mainRouter from './routes';
@@ -35,7 +33,7 @@ const initApp = async () => {
 
   app.use('/api', mainRouter);
 
-  app.use(express.static(`${__dirname}/../../client/build/`));
+  app.use(express.static(`${__dirname}/../../../client/build/`));
   app.use(errorMiddleware);
   app.listen({ port: PORT });
   return app;
