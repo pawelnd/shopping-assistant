@@ -16,6 +16,7 @@
     "@types/express": "^4.17.9",
     "@types/mongoose": "^5.10.1",
     "@types/node": "^12.7.2",
+    "@types/passport-facebook": "^2.1.10",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^12.0.0",
     "eslint-config-prettier": "^6.10.0",
@@ -36,21 +37,31 @@
     "typescript": "^3.6.2"
   },
   "dependencies": {
+    "bcrypt": "latest",
+    "body-parser": "^1.19.0",
     "class-transformer": "^0.3.1",
     "class-validator": "^0.12.2",
+    "compression": "latest",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
     "envalid": "^6.0.2",
     "express": "latest",
+    "express-session": "^1.17.1",
+    "helmet": "latest",
+    "jsonwebtoken": "latest",
+    "lodash": "^4.17.20",
+    "lodash-decorators": "^6.0.1",
     "mongoose": "^5.10.15",
+    "morgan": "latest",
     "node-cron": "^2.0.3",
+    "passport": "^0.4.1",
+    "passport-facebook": "^3.0.0",
+    "passport-http": "^0.3.0",
+    "passport-local": "^1.0.0",
     "reflect-metadata": "^0.1.13",
     "serverless-http": "^2.6.0",
     "source-map-support": "^0.5.19",
     "tsyringe": "^4.4.0",
-    "typedi": "latest",
-    "helmet": "latest",
-    "compression": "latest",
-    "morgan": "latest"
+    "typedi": "latest"
   }
 }

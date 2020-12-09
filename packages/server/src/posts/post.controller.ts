@@ -10,6 +10,7 @@ export class PostController {
 
   public getAllPosts = async (request: Request, response: Response) => {
     const posts = await this.postRepository.findAll();
+    console.log(request)
     response.send(posts);
   };
 
@@ -19,7 +20,7 @@ export class PostController {
     next,
   ) => {
     await this.postRepository.removeAll();
-    next();
+    response.send();
   };
 
   public createPost = async (request: Request, response: Response) => {

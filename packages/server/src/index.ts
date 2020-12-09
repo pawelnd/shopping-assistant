@@ -1,26 +1,37 @@
+import 'source-map-support/register';
+import 'reflect-metadata';
 import express from 'express';
+import { container } from 'tsyringe';
 import cookieParser from 'cookie-parser';
-import mongoose from 'mongoose';
 import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
-import { config } from 'dotenv';
+
 import path from 'path';
-import { PORT } from './config';
-import 'source-map-support/register';
-import 'reflect-metadata';
+import bodyParser from 'body-parser';
+
 import mainRouter from './routes';
 import { validateEnv } from './utils/validateEnv';
-import errorMiddleware from './middleware/error.middleware';
 
-const initApp = () => {
+import { PassportInitializer } from './passport/PassportInitializer';
+import errorMiddleware from './middleware/error.middleware';
+import { config as serverConfig } from './config';
+import { DatabaseInitializer } from './db/DatabaseInitializer';
+
+const initApp = async () => {
+  console.log('Starting server app with following variables');
+  console.log(JSON.stringify(serverConfig));
+
+  const { PORT } = serverConfig;
   const app = express();
   app.use(cookieParser());
   app.use(morgan('combined'));
   app.use(compression());
   app.use(helmet());
-  app.use(helmet());
-  app.use(express.json());
+  app.use(bodyParser.json());
+
+  await container.resolve(DatabaseInitializer).initialize();
+  await container.resolve(PassportInitializer).initialize(app);
 
   app.use('/api', mainRouter);
 
@@ -30,36 +41,15 @@ const initApp = () => {
   return app;
 };
 
-const initDb = async () => {
-  const { MONGO_CONNECTION_STRING } = process.env;
-  try {
-    await mongoose.connect(MONGO_CONNECTION_STRING, {
-      useNewUrlParser: true,
-    });
-    console.log('DB connected successfully');
-  } catch (e) {
-    console.log(
-      `DB connection problem at connection string: ${MONGO_CONNECTION_STRING ??
-        'empty'}`,
-    );
-  }
-};
-
-function applyEnvVariables() {
-  config({ path: path.resolve(__dirname, './../../../.env') });
-}
-
 const bootstrap = async () => {
-  applyEnvVariables();
   console.log('Initializing app');
   validateEnv();
-  await initDb();
   await initApp();
 };
 
 bootstrap()
   .then(() => {
-    console.log(`🚀 API ready at http://localhost:${PORT}`);
+    console.log(`🚀 API ready at http://localhost:${serverConfig.PORT}`);
   })
   .catch(error => {
     console.error(error);

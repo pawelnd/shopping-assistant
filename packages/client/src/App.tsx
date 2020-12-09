@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
 import routes from './routes';
 import MainLayout from './layouts/MainLayout';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login';
 import Test from './pages/Test';
 

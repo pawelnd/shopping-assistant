@@ -14,6 +14,7 @@ module.exports = {
     "prettier/@typescript-eslint"
   ],
   "rules": {
-    "autofix/no-debugger": "error"
+    "autofix/no-debugger": "error",
+    'no-underscore-dangle': ["error", { "allow": ["_id"] }]
   }
 };

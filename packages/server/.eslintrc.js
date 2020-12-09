@@ -6,7 +6,8 @@ module.exports = {
   overrides: [
     {
       rules: {
-        'import/prefer-default-export' : 0
+        'import/prefer-default-export' : 0,
+        'no-underscore-dangle': ["error", { "allow": ["_id"] }]
       },
       files: ["*.test.controller.ts"],
       env: { jest: true },

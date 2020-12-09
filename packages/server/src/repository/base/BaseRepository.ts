@@ -1,15 +1,31 @@
-import mongoose, { Schema, Document, Model } from 'mongoose';
+import mongoose, {
+  Schema,
+  Document,
+  Model,
+  DocumentQuery,
+  MongooseFilterQuery,
+} from 'mongoose';
+import User from '../../common/interfaces/user.interface';
 
 abstract class BaseRepository<T> {
-  private Model: Model<T & Document>;
+  protected Model: Model<T & Document>;
 
   protected constructor(private name: string, private schema: Schema<T>) {
     this.Model = mongoose.model(name, schema);
   }
 
-  async create(item: T): Promise<T> {
+  async create(item): Promise<T> {
     const result = await new this.Model({ ...item }).save();
     return { ...result };
+  }
+
+  async createOrUpdate(item: T) {
+    const query = item as MongooseFilterQuery<T>;
+    const id = query._id ?? null;
+    await this.Model.updateOne({ _id: id }, item, {
+      upsert: true,
+      setDefaultsOnInsert: true,
+    });
   }
 
   update(id: string, item: T): Promise<boolean> {
@@ -30,12 +46,16 @@ abstract class BaseRepository<T> {
     return result.deletedCount;
   }
 
-  find(item: T): Promise<T[]> {
-    throw new Error('Method not implemented.');
+  find(item): Promise<T[]> {
+    return this.Model.find(item).exec();
   }
 
-  findOne(id: string): Promise<T> {
-    throw new Error('Method not implemented.');
+  findOne(item): Promise<T> {
+    return this.Model.findOne(item).exec();
+  }
+
+  findById(id: string): Promise<T> {
+    return this.Model.findById(id).exec();
   }
 }
 
