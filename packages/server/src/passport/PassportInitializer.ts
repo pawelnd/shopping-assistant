@@ -20,6 +20,7 @@ export class PassportInitializer {
     expressApp.use(passport.initialize());
     passport.use(this.createLocalStrategy());
     passport.use(this.createFacebookStrategy());
+    expressApp.enable('trust proxy'); //required by facebook auth
 
     passport.serializeUser(function(user, done) {
       done(null, user);
