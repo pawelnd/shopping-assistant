@@ -8,6 +8,7 @@ import compression from 'compression';
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
 
+import path from 'path';
 import mainRouter from './routes';
 import { validateEnv } from './utils/validateEnv';
 
@@ -32,9 +33,12 @@ const initApp = async () => {
   await container.resolve(PassportInitializer).initialize(app);
 
   app.use('/api', mainRouter);
-
-  app.use(express.static(`${__dirname}/../../../client/build/`));
   app.use(errorMiddleware);
+  app.use(express.static(`${__dirname}/../../../client/build/`));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(`${__dirname}/../../../client/build/index.html`));
+  });
+
   app.listen({ port: PORT });
   return app;
 };
