@@ -3,11 +3,12 @@ interface User {
   name: string;
   email: string;
   password: string;
+  photoUrl?: string;
   address?: {
     street: string;
     city: string;
   };
-  lastLogin: Date,
+  lastLogin: Date;
 }
 
 export default User;

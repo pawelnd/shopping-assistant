@@ -15,6 +15,8 @@ module.exports = {
   ],
   "rules": {
     "autofix/no-debugger": "error",
-    'no-underscore-dangle': ["error", { "allow": ["_id"] }]
+    'no-underscore-dangle': ["error", { "allow": ["_id"] }],
+    "no-param-reassign": ["error", { "props": false }],
+    "import/prefer-default-export": "off"
   }
 };

@@ -26,8 +26,8 @@ class AuthMiddleware {
     try {
       const authCookie = cookies[this.authService.AUTH_HEADER];
       const tokenData = this.authService.readAuthCookie(authCookie);
-      const { email } = tokenData;
-      const user = (await this.userRepository.findByEmail(email)) as User;
+      const { id } = tokenData;
+      const user = await this.userRepository.findById(id);
       if (user) {
         req.user = user;
         next();

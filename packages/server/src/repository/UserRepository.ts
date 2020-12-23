@@ -1,7 +1,6 @@
 import { injectable } from 'tsyringe';
 import { Schema } from 'mongoose';
 import BaseRepository from './base/BaseRepository';
-import Post from '../posts/post.interface';
 import User from '../common/interfaces/user.interface';
 
 @injectable()
@@ -24,7 +23,7 @@ export class UserRepository extends BaseRepository<User> {
     super('User', UserRepository.schema);
   }
 
-  public async findByEmail(email: string) {
+  public async findByEmail(email: string): Promise<User> {
     return this.findOne({ email });
   }
 }

@@ -10,7 +10,6 @@ export class PostController {
 
   public getAllPosts = async (request: Request, response: Response) => {
     const posts = await this.postRepository.findAll();
-    console.log(request)
     response.send(posts);
   };
 

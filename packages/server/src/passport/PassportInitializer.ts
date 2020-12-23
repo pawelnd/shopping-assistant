@@ -20,7 +20,7 @@ export class PassportInitializer {
     expressApp.use(passport.initialize());
     passport.use(this.createLocalStrategy());
     passport.use(this.createFacebookStrategy());
-    expressApp.enable('trust proxy'); //required by facebook auth
+    expressApp.enable('trust proxy'); // required by facebook auth
 
     passport.serializeUser(function(user, done) {
       done(null, user);
@@ -53,13 +53,13 @@ export class PassportInitializer {
       },
       async (accessToken, refreshToken, profile, done) => {
         const email = profile.emails[0].value as string;
-        const user = {
+        const userPayload = {
           email,
           name: profile.displayName,
           lastLogin: new Date(),
         } as User;
-        await this.userRepository.createOrUpdate(user);
-        done(null, await this.userRepository.findByEmail(email));
+        const user = await this.userRepository.createOrUpdate(userPayload);
+        done(null, await user);
       },
     );
   }

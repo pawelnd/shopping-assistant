@@ -1,12 +1,18 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import routes from './routes';
 import MainLayout from './layouts/MainLayout';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login';
 import Test from './pages/Test';
+import { checkLoggedUser } from './store/features/authSlice/authSlice';
 
 const App = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(checkLoggedUser());
+  }, []);
   return (
     <Router>
       <MainLayout>

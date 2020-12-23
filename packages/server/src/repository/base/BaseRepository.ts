@@ -19,13 +19,18 @@ abstract class BaseRepository<T> {
     return { ...result };
   }
 
-  async createOrUpdate(item: T) {
+  async createOrUpdate(item: T): Promise<T> {
     const query = item as MongooseFilterQuery<T>;
     const id = query._id ?? null;
-    await this.Model.updateOne({ _id: id }, item, {
-      upsert: true,
-      setDefaultsOnInsert: true,
-    });
+    const newitem = await this.Model.findOneAndUpdate(
+      id ? { _id: id } : {},
+      item,
+      {
+        upsert: true,
+        setDefaultsOnInsert: true,
+      },
+    );
+    return newitem.toObject();
   }
 
   update(id: string, item: T): Promise<boolean> {
@@ -50,12 +55,12 @@ abstract class BaseRepository<T> {
     return this.Model.find(item).exec();
   }
 
-  findOne(item): Promise<T> {
-    return this.Model.findOne(item).exec();
+  async findOne(item): Promise<T> {
+    return (await this.Model.findOne(item).exec()).toJSON();
   }
 
-  findById(id: string): Promise<T> {
-    return this.Model.findById(id).exec();
+  async findById(id: string): Promise<T> {
+    return (await this.Model.findById(id).exec()).toJSON();
   }
 }
 

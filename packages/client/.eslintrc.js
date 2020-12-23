@@ -12,7 +12,8 @@ module.exports = {
     {
       files: "src/*.generated.tsx",
       rules: {
-        "import/no-duplicates": "off"
+        "import/no-duplicates": "off",
+        "no-param-reassign": ["error", { "props": false }]
       }
     }
   ],
