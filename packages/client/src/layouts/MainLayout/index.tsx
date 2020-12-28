@@ -8,9 +8,6 @@ const MainLayout = ({ children }: any) => {
   return (
     <MainLayoutWrapper>
       <TopBar />
-
-
-
       <ContentWrapper>
         <Container>{children}</Container>
       </ContentWrapper>

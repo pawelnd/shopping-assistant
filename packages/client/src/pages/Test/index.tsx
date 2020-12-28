@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Button from '@material-ui/core/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store/store.types';
+import { getLoggedUserStart } from '../../store/features/authSlice/auth.slice';
 
 const Test = () => {
   const [state, setState] = useState({
@@ -10,6 +13,9 @@ const Test = () => {
     response: 'NONE',
     test: [1, 2, 3, 4]
   });
+
+  const { name, email } = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
 
   const APP_URL = 'api/';
   const POSTS_URI = `${APP_URL}posts`;
@@ -40,30 +46,6 @@ const Test = () => {
     setState({ ...state, isAuthenticated: false, token: '', user: null });
   };
 
-  // const facebookResponse = (response) => {
-  //   const tokenBlob = new Blob([JSON.stringify({ access_token: response.accessToken }, null, 2)], {
-  //     type: 'application/json'
-  //   });
-  //   const options = {
-  //     method: 'POST',
-  //     body: tokenBlob,
-  //     mode: 'cors',
-  //     cache: 'default'
-  //   };
-  //   fetch('api/auth', options)
-  //     .then((response) => {
-  //       const { token } = JSON.parse(response.headers.get('Authorization'));
-  //       response.json().then((user) => {
-  //         if (token) {
-  //           setState({ ...state, isAuthenticated: true, user, token });
-  //         }
-  //       });
-  //     })
-  //     .catch(() => {
-  //       console.log('ERROR');
-  //     });
-  // };
-
   const content = state.isAuthenticated ? (
     <div>
       <p>Authenticated</p>
@@ -79,12 +61,22 @@ const Test = () => {
     <div>{/* <FacebookLogin appId={config.FACEBOOK_APP_ID} autoLoad={false} callback={facebookResponse} /> */}</div>
   );
 
-  console.log(state.response);
   return (
     <div className="App">
-      <Button color="primary" onClick={() => listPosts()}>GET POSTS</Button>
-      <Button color="primary" onClick={() => addPosts()}>ADD POSTS</Button>
-      <Button color="primary" onClick={() => testBtnClick()}>TEST</Button>
+      <div>
+        Auth: {name} {email}
+      </div>
+      <Button onClick={(event) => dispatch(getLoggedUserStart())}>CheckLogin</Button>
+      <hr />
+      <Button color="primary" onClick={() => listPosts()}>
+        GET POSTS
+      </Button>
+      <Button color="primary" onClick={() => addPosts()}>
+        ADD POSTS
+      </Button>
+      <Button color="primary" onClick={() => testBtnClick()}>
+        TEST
+      </Button>
       1.{state.test}
       2.{content}
       3.{state.response}

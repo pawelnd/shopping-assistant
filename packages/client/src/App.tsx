@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from 'react';
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import routes from './routes';
 import MainLayout from './layouts/MainLayout';
 import Dashboard from './pages/Dashboard/Dashboard';
 import Login from './pages/Login';
 import Test from './pages/Test';
-import { checkLoggedUser } from './store/features/authSlice/authSlice';
+import { getLoggedUserStart } from './store/features/authSlice/auth.slice';
 
 const App = () => {
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(checkLoggedUser());
+    dispatch(getLoggedUserStart());
   }, []);
   return (
     <Router>
