@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { toaster } from './components/Toaster';
+import store from './store/store';
+import { getLoggedUserFailure } from './store/features/authSlice/auth.slice';
 
 const handleHTTPErrors = (error: any) => {
   const statusCode = error?.response?.status;
@@ -11,6 +13,7 @@ const handleHTTPErrors = (error: any) => {
       break;
     case 401:
       toaster.showError('Please login to access this resource');
+      store.dispatch(getLoggedUserFailure());
       break;
     default:
       toaster.showError(message ?? 'Error occurred ');

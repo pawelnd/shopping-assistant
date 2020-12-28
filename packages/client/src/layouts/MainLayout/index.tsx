@@ -1,8 +1,8 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
-import TopBar from '../TopBar';
 import Footer from './Footer';
 import { ContentWrapper, MainLayoutWrapper } from './styles';
+import TopBar from '../../components/TopBar';
 
 const MainLayout = ({ children }: any) => {
   return (
