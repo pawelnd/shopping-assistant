@@ -1,35 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Trans } from 'react-i18next';
+import { FacebookButtonWrapper, StyledFacebookIcon, StyledTextWrapper } from './styles';
 
-const FacebookButtonWrapper = styled.div`
-  background: #3b5998;
-  border-radius: 3px;
-  font-weight: 600;
-  padding: 5px 8px;
-  display: inline-block;
-  position: static;
-
-  &:hover {
-    cursor: pointer;
-    background: #213a6f;
-  }
-`;
-
-const StyledFacebookIcon = styled.svg`
-  width: 18px;
-  fill: white;
-  vertical-align: middle;
-  border-radius: 2px;
-`;
-
-const StyledTextWrapper = styled.a`
-  vertical-align: middle;
-  color: white;
-  font-size: 14px;
-  padding: 0 3px;
-  text-decoration: none;
-`;
 const FacebookLoginButton = () => {
   return (
     <FacebookButtonWrapper>
