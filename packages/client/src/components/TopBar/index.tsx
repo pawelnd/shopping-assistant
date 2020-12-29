@@ -16,6 +16,7 @@ export default function TopBar() {
     <AppBar position="static">
       <AppBarContainer>
         <AppBarStart onClick={() => history.push(routes.DASHBOARD)}>Shopping List</AppBarStart>
+        <AppBarStart onClick={() => history.push(routes.TEST)}>Shopping List</AppBarStart>
         <AppBarCenter />
         <AppBarEnd>
           {t('welcomeMessage', { name })}

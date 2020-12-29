@@ -1,9 +1,10 @@
 import React from 'react';
 
 const routes = {
-  DASHBOARD: '/',
+  MAIN: '/',
+  DASHBOARD: '/dashboard',
   LOGIN: '/login',
-  TEST: '/test',
+  TEST: '/test'
 };
 
 export default routes;
