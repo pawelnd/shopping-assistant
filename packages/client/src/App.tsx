@@ -18,6 +18,10 @@ const App = () => {
     dispatch(getLoggedUserStart());
   }, [dispatch]);
 
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <Router>
       <MainLayout>
@@ -25,7 +29,7 @@ const App = () => {
           <PrivateRoute exact path={routes.DASHBOARD} isAuthenticated={isLoggedIn} component={Dashboard} />
           <PrivateRoute path={routes.TEST} isAuthenticated={isLoggedIn} component={Test} />
           <Route path={routes.LOGIN} component={Login} />
-          {isLoading ? null : <Redirect to={isLoggedIn ? routes.DASHBOARD : routes.LOGIN} />}
+          <Redirect to={isLoggedIn ? routes.DASHBOARD : routes.LOGIN} />
         </Switch>
       </MainLayout>
     </Router>
