@@ -1,18 +1,21 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
-import Footer from './Footer';
-import { ContentWrapper, MainLayoutWrapper } from './styles';
+import { Wrapper, Footer, Header, Middle } from './styles';
 import TopBar from '../../components/TopBar';
+import { Container } from '@material-ui/core';
 
 const MainLayout = ({ children }: any) => {
   return (
-    <MainLayoutWrapper>
-      <TopBar />
-      <ContentWrapper>
+    <Wrapper>
+      <Header>
+        <Container>
+          <TopBar />
+        </Container>
+      </Header>
+      <Middle>
         <Container>{children}</Container>
-      </ContentWrapper>
-      <Footer />
-    </MainLayoutWrapper>
+      </Middle>
+      <Footer>Footer</Footer>
+    </Wrapper>
   );
 };
 

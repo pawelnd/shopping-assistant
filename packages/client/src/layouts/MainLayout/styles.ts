@@ -1,14 +1,26 @@
-import styled from 'styled-components';
-import { blueGrey } from '@material-ui/core/colors';
+import styled from 'styled-components/macro';
+import common from '@material-ui/core/colors/common';
 
-export const MainLayoutWrapper = styled.div`
+export const Wrapper = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: ${blueGrey[50]};
+  background-color: ${common.white};
 `;
 
-export const ContentWrapper = styled.div`
+export const Middle = styled.div`
+  background-color: var(--content-color);
   flex-grow: 1;
+`;
+
+export const Header = styled.header`
+  background-color: var(--header-color);
+  position: sticky;
+  top: 0px;
+  width: 100%;
+  padding: 0.3em;
+`;
+export const Footer = styled.div`
+  background-color: aquamarine;
 `;
