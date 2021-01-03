@@ -18,5 +18,7 @@ export const Logo = styled.div`
   font-size: 3em;
   color: white;
   line-height: 0.9em;
+  height: 50px;
+  width: 50px;
 `;
 export const RightSideButtons = styled.div``;

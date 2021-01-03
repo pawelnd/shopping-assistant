@@ -15,18 +15,15 @@ export default function TopBar() {
   return (
     <Container>
       <Wrapper>
-        <Logo>SL</Logo>
+        <Logo>sl</Logo>
         <RightSideButtons>
-          {t('welcomeMessage', { name })}
-          {!isLoggedIn && (
-            <Button color="inherit" onClick={() => history.push(routes.LOGIN)}>
-              {t('login')}
-            </Button>
-          )}
           {isLoggedIn && (
-            <Button color="inherit" onClick={() => (window.location.href = '/api/auth/logout')}>
-              {t('logout')}
-            </Button>
+            <>
+              {t('welcomeMessage', { name })}
+              <Button color="inherit" onClick={() => (window.location.href = '/api/auth/logout')}>
+                {t('logout')}
+              </Button>
+            </>
           )}
         </RightSideButtons>
       </Wrapper>

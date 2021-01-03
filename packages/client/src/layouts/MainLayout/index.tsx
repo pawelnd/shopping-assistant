@@ -1,7 +1,7 @@
 import React from 'react';
-import { Wrapper, Footer, Header, Middle } from './styles';
-import TopBar from '../../components/TopBar';
 import { Container } from '@material-ui/core';
+import { Wrapper, FooterContainer, Header, Middle } from './styles';
+import TopBar from '../../components/TopBar';
 
 const MainLayout = ({ children }: any) => {
   return (
@@ -14,7 +14,6 @@ const MainLayout = ({ children }: any) => {
       <Middle>
         <Container>{children}</Container>
       </Middle>
-      <Footer>Footer</Footer>
     </Wrapper>
   );
 };

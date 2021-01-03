@@ -10,6 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const Middle = styled.div`
+  padding: 10px;
   background-color: var(--content-color);
   flex-grow: 1;
 `;
@@ -21,6 +22,7 @@ export const Header = styled.header`
   width: 100%;
   padding: 0.3em;
 `;
-export const Footer = styled.div`
-  background-color: aquamarine;
+export const FooterContainer = styled.footer`
+  background-color: var(--header-color);
+  padding: 1em;
 `;
