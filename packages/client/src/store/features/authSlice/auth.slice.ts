@@ -8,10 +8,7 @@ type LoggedUserState = {
 
 const state: LoggedUserState = {
   isLoading: true,
-  isLoggedIn: false,
-  name: null,
-  email: null,
-  photoUrl: null
+  isLoggedIn: false
 };
 
 export const authSlice = createSlice({
@@ -31,9 +28,9 @@ export const authSlice = createSlice({
       state.isLoading = false;
     },
     getLoggedUserFailure(state) {
-      state.name = null;
-      state.email = null;
-      state.photoUrl = null;
+      state.name = undefined;
+      state.email = undefined;
+      state.photoUrl = undefined;
       state.isLoggedIn = false;
       state.isLoading = false;
     }

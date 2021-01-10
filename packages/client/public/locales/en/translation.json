@@ -2,5 +2,6 @@
   "login": "Login",
   "logout": "Logout",
   "loginWIthFacebook": "Login with Facebook",
-  "welcomeMessage": "Hello {{name}}"
+  "welcomeMessage": "Hello {{name}}",
+  "logout ": "Logout"
 }

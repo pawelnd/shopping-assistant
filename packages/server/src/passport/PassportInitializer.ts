@@ -22,11 +22,11 @@ export class PassportInitializer {
     passport.use(this.createFacebookStrategy());
     expressApp.enable('trust proxy'); // required by facebook auth
 
-    passport.serializeUser(function(user, done) {
+    passport.serializeUser(function (user, done) {
       done(null, user);
     });
 
-    passport.deserializeUser(function(user, done) {
+    passport.deserializeUser(function (user, done) {
       done(null, user);
     });
   }
@@ -49,13 +49,14 @@ export class PassportInitializer {
         clientID: FACEBOOK_APP_ID,
         clientSecret: FACEBOOK_APP_SECRET,
         callbackURL: `/api/auth/facebook/callback`,
-        profileFields: ['id', 'email', 'displayName'],
+        profileFields: ['id', 'email', 'displayName', 'photos'],
       },
       async (accessToken, refreshToken, profile, done) => {
         const email = profile.emails[0].value as string;
         const userPayload = {
           email,
           name: profile.displayName,
+          photoUrl: profile?.photos[0]?.value,
           lastLogin: new Date(),
         } as User;
         const user = await this.userRepository.createOrUpdate(userPayload);

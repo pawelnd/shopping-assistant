@@ -15,6 +15,7 @@ export class UserRepository extends BaseRepository<User> {
     address: UserRepository.addressSchema,
     email: String,
     name: String,
+    photoUrl: String,
     password: String,
     lastLogin: Date,
   });

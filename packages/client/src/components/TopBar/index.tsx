@@ -1,31 +1,20 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { useTranslation } from 'react-i18next';
-import routes from '../../routes';
 import { RootState } from '../../store/store.types';
 import { Container, Logo, RightSideButtons, Wrapper } from './styles';
+import TopBarMenu from '../TopBarMenu';
 
 export default function TopBar() {
-  const history = useHistory();
-  const { t } = useTranslation();
-  const { name, isLoggedIn } = useSelector((state: RootState) => state.auth);
+  const { name, isLoggedIn, photoUrl } = useSelector((state: RootState) => state.auth);
 
+  const signOut = () => {
+    window.location.href = '/api/auth/logout';
+  };
   return (
     <Container>
       <Wrapper>
         <Logo>sl</Logo>
-        <RightSideButtons>
-          {isLoggedIn && (
-            <>
-              {t('welcomeMessage', { name })}
-              <Button color="inherit" onClick={() => (window.location.href = '/api/auth/logout')}>
-                {t('logout')}
-              </Button>
-            </>
-          )}
-        </RightSideButtons>
+        <RightSideButtons>{isLoggedIn && <TopBarMenu name={name || ''} photoUrl={photoUrl} handleSignOut={signOut} />}</RightSideButtons>
       </Wrapper>
     </Container>
   );
