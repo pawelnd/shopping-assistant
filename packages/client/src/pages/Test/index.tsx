@@ -14,7 +14,8 @@ const Test = () => {
     test: [1, 2, 3, 4]
   });
 
-  const { name, email } = useSelector((state: RootState) => state.auth);
+  // @ts-ignore
+  const { name, email } = useSelector((state: RootState) => state.auth.loggedUser ?? null);
   const dispatch = useDispatch();
 
   const APP_URL = 'api/';

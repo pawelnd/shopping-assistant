@@ -5,7 +5,7 @@ import { Container, Logo, RightSideButtons, Wrapper } from './styles';
 import TopBarMenu from '../TopBarMenu';
 
 export default function TopBar() {
-  const { name, isLoggedIn, photoUrl } = useSelector((state: RootState) => state.auth);
+  const { isLoggedIn, loggedUser } = useSelector((state: RootState) => state.auth);
 
   const signOut = () => {
     window.location.href = '/api/auth/logout';
@@ -14,7 +14,7 @@ export default function TopBar() {
     <Container>
       <Wrapper>
         <Logo>sl</Logo>
-        <RightSideButtons>{isLoggedIn && <TopBarMenu name={name || ''} photoUrl={photoUrl} handleSignOut={signOut} />}</RightSideButtons>
+        <RightSideButtons>{isLoggedIn && <TopBarMenu loggedUser={loggedUser} handleSignOut={signOut} />}</RightSideButtons>
       </Wrapper>
     </Container>
   );

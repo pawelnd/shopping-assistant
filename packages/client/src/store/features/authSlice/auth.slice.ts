@@ -4,7 +4,8 @@ import { User } from './auth.model';
 type LoggedUserState = {
   isLoggedIn: boolean;
   isLoading: boolean;
-} & User;
+  loggedUser?: User;
+};
 
 const state: LoggedUserState = {
   isLoading: true,
@@ -21,16 +22,16 @@ export const authSlice = createSlice({
     },
     getLoggedUserSuccess(state, action: PayloadAction<User>) {
       const { name, email, photoUrl } = action.payload;
-      state.name = name;
-      state.email = email;
-      state.photoUrl = photoUrl;
+      state.loggedUser = {
+        name,
+        email,
+        photoUrl
+      };
       state.isLoggedIn = true;
       state.isLoading = false;
     },
     getLoggedUserFailure(state) {
-      state.name = undefined;
-      state.email = undefined;
-      state.photoUrl = undefined;
+      state.loggedUser = undefined;
       state.isLoggedIn = false;
       state.isLoading = false;
     }

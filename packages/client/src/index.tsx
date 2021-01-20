@@ -2,7 +2,8 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider as ThemeProviderMaterial } from '@material-ui/core';
+import { ThemeProvider as ThemeProviderStyled } from 'styled-components';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
 import theme from './theme';
@@ -18,13 +19,15 @@ ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
       <GlobalStyles />
-      <ThemeProvider theme={theme}>
-        <Suspense fallback={<></>}>
-          <ToasterContainer>
-            <App />
-          </ToasterContainer>
-        </Suspense>
-      </ThemeProvider>
+      <ThemeProviderMaterial theme={theme}>
+        <ThemeProviderStyled theme={theme}>
+          <Suspense fallback={<></>}>
+            <ToasterContainer>
+              <App />
+            </ToasterContainer>
+          </Suspense>
+        </ThemeProviderStyled>
+      </ThemeProviderMaterial>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root')
