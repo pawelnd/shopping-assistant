@@ -1,4 +1,4 @@
-interface User {
+interface User extends Document {
   _id: string;
   name: string;
   email: string;

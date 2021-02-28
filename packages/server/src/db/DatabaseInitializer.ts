@@ -12,8 +12,9 @@ export class DatabaseInitializer {
       console.log('DB connected successfully');
     } catch (e) {
       console.log(
-        `DB connection problem at connection string: ${config.MONGO_CONNECTION_STRING ??
-          'empty'}`,
+        `DB connection problem at connection string: ${
+          config.MONGO_CONNECTION_STRING ?? 'empty'
+        }`,
       );
     }
   }

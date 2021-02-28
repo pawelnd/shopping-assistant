@@ -1,15 +1,13 @@
 import { injectable } from 'tsyringe';
-import mongoose, { Document, Schema } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 import BaseRepository from './base/BaseRepository';
 import Post from '../posts/post.interface';
 
+interface PostModel extends Post, Document {}
+
 @injectable()
 export class PostRepository extends BaseRepository<Post> {
-  private static schema: Schema<Post> = new Schema({
-    author: {
-      ref: 'User',
-      type: mongoose.Schema.Types.ObjectId,
-    },
+  private static schema = new Schema({
     content: String,
     label: String,
   });
