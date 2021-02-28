@@ -53,7 +53,7 @@ bootstrap()
   .then(() => {
     console.log(`🚀 API ready at http://localhost:${serverConfig.PORT}`);
   })
-  .catch(error => {
+  .catch((error) => {
     console.error(error);
     process.exit(1);
   });

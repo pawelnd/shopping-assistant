@@ -11,6 +11,7 @@ const handleHTTPErrors = (error: any) => {
     case 404:
       toaster.showError('The requested resource does not exist or has been deleted');
       break;
+
     case 401:
       toaster.showError('Please login to access this resource');
       store.dispatch(getLoggedUserFailure());

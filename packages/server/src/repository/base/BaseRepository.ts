@@ -8,13 +8,16 @@ import mongoose, {
 import User from '../../common/interfaces/user.interface';
 
 abstract class BaseRepository<T> {
-  protected Model: Model<T & Document>;
+  protected Model: Model<any>;
 
-  protected constructor(private name: string, private schema: Schema<T>) {
-    this.Model = mongoose.model(name, schema);
+  protected constructor(
+    private name: string,
+    private schemaDefinition: Schema,
+  ) {
+    this.Model = mongoose.model(name, schemaDefinition);
   }
 
-  async create(item): Promise<T> {
+  async create(item: T): Promise<T> {
     const result = await new this.Model({ ...item }).save();
     return { ...result };
   }

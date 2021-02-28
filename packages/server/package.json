@@ -1,5 +1,5 @@
 {
-  "name": "@shopping/server",
+  "name": "app-server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -14,7 +14,6 @@
   "license": "ISC",
   "devDependencies": {
     "@types/express": "^4.17.9",
-    "@types/mongoose": "^5.10.1",
     "@types/node": "^12.7.2",
     "@types/passport-facebook": "^2.1.10",
     "eslint": "^6.8.0",
@@ -33,10 +32,10 @@
     "onchange": "^6.1.0",
     "prettier": "^1.19.1",
     "rimraf": "^3.0.0",
-    "ts-node": "^8.3.0",
-    "typescript": "^3.6.2"
+    "ts-node": "^8.3.0"
   },
   "dependencies": {
+    "@types/mongoose": "^5.10.3",
     "bcrypt": "latest",
     "body-parser": "^1.19.0",
     "class-transformer": "^0.3.1",
