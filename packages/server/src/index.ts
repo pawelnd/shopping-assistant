@@ -17,7 +17,7 @@ import errorMiddleware from './middleware/error.middleware';
 import { config as serverConfig } from './config';
 import { DatabaseInitializer } from './db/DatabaseInitializer';
 import AuthMiddleware from './auth/auth.middleware';
-import buildGraphQLServer from './graphql/GraphQLInitializer';
+import buildGraphQLServer from './graphql/buildGraphQLServer';
 
 const initApp = async () => {
   console.log('Starting server app with following variables');
@@ -28,7 +28,9 @@ const initApp = async () => {
 
   // app.use(/^\/api\/(?!auth).*/, container.resolve(AuthMiddleware).apply);
   // app.use(/^\/graphql\/(?!auth).*/, container.resolve(AuthMiddleware).apply);
-
+  container.resolve(DatabaseInitializer).initialize();
+  container.resolve(PassportInitializer).initialize(app);
+  await buildGraphQLServer(app);
   app.use(cookieParser());
   app.use(morgan('combined'));
   app.use(compression());
@@ -36,15 +38,11 @@ const initApp = async () => {
   app.use(bodyParser.json());
   app.use('/api', mainRouter);
   app.use(errorMiddleware);
-  await buildGraphQLServer(app);
 
-  container.resolve(DatabaseInitializer).initialize();
-  container.resolve(PassportInitializer).initialize(app);
-
-  // app.use(express.static(`${__dirname}/../../../client/build/`));
-  // app.get('*', (req, res) => {
-  //   res.sendFile(path.join(`${__dirname}/../../../client/build/index.html`));
-  // });
+  app.use(express.static(`${__dirname}/../../../client/build/`));
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(`${__dirname}/../../../client/build/index.html`));
+  });
 
   app.listen({ port: PORT });
 

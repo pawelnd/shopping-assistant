@@ -10,7 +10,7 @@ import User from '../common/interfaces/user.interface';
 export const buildGraphQLServer = async (app: Application) => {
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver],
+      resolvers: [HelloResolver, PostsResolver],
       validate: false,
       container: { get: (cls) => container.resolve(cls) },
     }),
