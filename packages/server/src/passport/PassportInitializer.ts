@@ -10,13 +10,9 @@ import { config } from '../config';
 
 @injectable()
 export class PassportInitializer {
-  constructor(
-    private userRepository: UserRepository,
-    private authMiddleware: AuthMiddleware,
-  ) {}
+  constructor(private userRepository: UserRepository) {}
 
   public async initialize(expressApp: Application) {
-    expressApp.use(/^\/api\/(?!auth).*/, this.authMiddleware.apply);
     expressApp.use(passport.initialize());
     passport.use(this.createLocalStrategy());
     passport.use(this.createFacebookStrategy());

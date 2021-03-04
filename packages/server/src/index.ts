@@ -16,6 +16,8 @@ import { PassportInitializer } from './passport/PassportInitializer';
 import errorMiddleware from './middleware/error.middleware';
 import { config as serverConfig } from './config';
 import { DatabaseInitializer } from './db/DatabaseInitializer';
+import AuthMiddleware from './auth/auth.middleware';
+import buildGraphQLServer from './graphql/GraphQLInitializer';
 
 const initApp = async () => {
   console.log('Starting server app with following variables');
@@ -23,23 +25,29 @@ const initApp = async () => {
 
   const { PORT } = serverConfig;
   const app = express();
+
+  // app.use(/^\/api\/(?!auth).*/, container.resolve(AuthMiddleware).apply);
+  // app.use(/^\/graphql\/(?!auth).*/, container.resolve(AuthMiddleware).apply);
+
   app.use(cookieParser());
   app.use(morgan('combined'));
   app.use(compression());
   app.use(helmet());
   app.use(bodyParser.json());
-
-  await container.resolve(DatabaseInitializer).initialize();
-  await container.resolve(PassportInitializer).initialize(app);
-
   app.use('/api', mainRouter);
   app.use(errorMiddleware);
-  app.use(express.static(`${__dirname}/../../../client/build/`));
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(`${__dirname}/../../../client/build/index.html`));
-  });
+  await buildGraphQLServer(app);
+
+  container.resolve(DatabaseInitializer).initialize();
+  container.resolve(PassportInitializer).initialize(app);
+
+  // app.use(express.static(`${__dirname}/../../../client/build/`));
+  // app.get('*', (req, res) => {
+  //   res.sendFile(path.join(`${__dirname}/../../../client/build/index.html`));
+  // });
 
   app.listen({ port: PORT });
+
   return app;
 };
 
