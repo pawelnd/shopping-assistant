@@ -1,6 +1,7 @@
 import styled from 'styled-components/macro';
 
 export const FacebookButtonWrapper = styled.div`
+  display: inline-block;
   background: #3b5998;
   border-radius: 3px;
   font-weight: 600;
@@ -21,7 +22,8 @@ export const StyledFacebookIcon = styled.svg`
   border-radius: 2px;
 `;
 
-export const StyledTextWrapper = styled.a`
+export const StyledTextWrapper = styled.div`
+  display: inline-block;
   vertical-align: middle;
   color: white;
   font-size: 14px;
