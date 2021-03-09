@@ -17,7 +17,7 @@ import errorMiddleware from './middleware/error.middleware';
 import { config as serverConfig } from './config';
 import { DatabaseInitializer } from './db/DatabaseInitializer';
 import AuthMiddleware from './auth/auth.middleware';
-import buildGraphQLServer from './graphql/buildGraphQLServer';
+import { buildGraphQLServer } from './graphql/buildGraphQLServer';
 
 const initApp = async () => {
   console.log('Starting server app with following variables');

@@ -6,13 +6,18 @@ import { HelloResolver } from '../hello';
 import { PostsResolver } from '../posts/post.resolver';
 import { buildContext } from './context';
 import User from '../common/interfaces/user.interface';
+import { Recipe } from '../learning/Recipe';
+import { RecipeResolver } from '../learning/RecipeResolver';
+import { MyResolver } from '../learning/MyResolver';
+import { authChecker } from './authChecker';
 
 export const buildGraphQLServer = async (app: Application) => {
   const apolloServer = new ApolloServer({
     schema: await buildSchema({
-      resolvers: [HelloResolver, PostsResolver],
+      resolvers: [HelloResolver, PostsResolver, RecipeResolver, MyResolver],
       validate: false,
       container: { get: (cls) => container.resolve(cls) },
+      authChecker,
     }),
     context: ({ req, res }) =>
       buildContext({
