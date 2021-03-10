@@ -5,6 +5,6 @@ import { Recipe } from './Recipe';
 @injectable()
 export class RecipeService extends BaseRepository<Recipe> {
   constructor() {
-    super('Recipe', new Recipe());
+    super(Recipe);
   }
 }

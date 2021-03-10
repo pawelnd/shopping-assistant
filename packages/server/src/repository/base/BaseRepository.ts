@@ -1,25 +1,16 @@
-import mongoose, {
-  Schema,
-  Document,
-  Model,
-  DocumentQuery,
-  MongooseFilterQuery,
-} from 'mongoose';
-import User from '../../common/interfaces/user.interface';
+import { Model, MongooseFilterQuery } from 'mongoose';
+import { getModelForClass } from '@typegoose/typegoose';
 
 abstract class BaseRepository<T> {
   protected Model: Model<any>;
 
-  protected constructor(
-    private name: string,
-    private schemaDefinition: Schema,
-  ) {
-    this.Model = mongoose.model(name, schemaDefinition);
+  protected constructor(private clazz: any) {
+    this.Model = getModelForClass(clazz);
   }
 
   async create(item: T): Promise<T> {
     const result = await new this.Model({ ...item }).save();
-    return { ...result };
+    return { ...result.toObject() };
   }
 
   async createOrUpdate(item: T): Promise<T> {

@@ -3,25 +3,24 @@ import {
   Arg,
   Ctx,
   Field,
+  ID,
   InputType,
   Mutation,
   Query,
   Resolver,
 } from 'type-graphql';
 import { injectable } from 'tsyringe';
-import { Request, Response } from 'express';
 import { PostRepository } from '../repository/PostRepository';
 import Post from './post.interface';
-import CreatePostDto from './post.dto';
 import { Context } from '../graphql/context';
 
 @InputType()
 class PostInput extends Post {
   @Field()
-  title: string;
+  content: string;
 
   @Field()
-  creator: string;
+  title: string;
 }
 
 @Resolver(Post)
@@ -33,7 +32,8 @@ export class PostsResolver {
 
   @Query((returns) => [Post])
   async posts(): Promise<Post[]> {
-    return this.postRepository.findAll();
+    const posts = await this.postRepository.findAll();
+    return posts;
   }
 
   @Mutation(() => Number)

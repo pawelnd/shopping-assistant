@@ -18,6 +18,7 @@ export const buildGraphQLServer = async (app: Application) => {
       validate: false,
       container: { get: (cls) => container.resolve(cls) },
       authChecker,
+      nullableByDefault: true,
     }),
     context: ({ req, res }) =>
       buildContext({
